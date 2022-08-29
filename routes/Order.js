@@ -22,7 +22,7 @@ connection.connect(function(err){
 
 const router = express.Router()
 
-router.get('/',(req, res) =>{   
+router.get('/',(req, res) =>{
     var query = "SELECT * FROM orders"
 
     connection.query(query,(err,rows) =>{
@@ -36,7 +36,7 @@ router.post('/',(req, res) =>{
     const orderId = req.body.orderId
     const date = req.body.date
     const customerId = req.body.customerId
-     
+
     var query = "INSERT INTO orders (orderId, date, customerId) VALUES (?,?,?)"
 
     connection.query(query, [orderId, date, customerId], (err) =>{
@@ -57,7 +57,7 @@ router.put('/',(req, res) =>{
 
     connection.query(query, [date, customerId, orderId], (err,rows) =>{
         if(err) console.log(err);
-        
+
         if(rows.affectedRows > 0){
             res.send({'message' : 'Order Updated'})
         }else{
@@ -82,7 +82,7 @@ router.delete('/:orderId', (req, res) => {
     })
 })
 
-//get order by id
+
 router.get('/:orderId', (req, res) => {
     const orderId = req.params.orderId
 
